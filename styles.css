@@ -1,14 +1,24 @@
-* {
+body{
     margin: 0;
 }
 
-.container {
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 30px;
+    margin-top: 30px;
+}
+
+#container {
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
-    /* max-width: 500px; */
-    height: 100vh;
+    height: 80vh;
     width: auto;
 }
 
+.row{
+    border-left: black;
+}
