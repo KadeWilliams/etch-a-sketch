@@ -1,5 +1,5 @@
 const container = document.querySelector('div');
-
+const outer = document.createElement('div')
 
 
 for (let j = 0; j < 16; j++) {
@@ -12,7 +12,7 @@ for (let j = 0; j < 16; j++) {
         col.style.border = '1px black solid';
         col.style.height = '30px';
         col.style.width = '30px';
-        col.style.backgroundColor = 'blue';
+        col.style.backgroundColor = 'white';
         row.appendChild(col);
     }
     row.style.border = '1px black solid';
