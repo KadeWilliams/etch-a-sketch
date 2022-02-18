@@ -1,32 +1,74 @@
 const container = document.getElementById('container');
-const button = document.querySelector('button');
+const clear = document.getElementById('clearGrid');
+const input = document.querySelector('input');
+const gridSizeText = document.getElementById('grid-size');
+const randomColorButton = document.getElementById('rand-color');
 
-for (let j = 0; j < 16; j++) {
-    const row = document.createElement('div');
-    row.style.display = 'flex';
-    row.classList.add('row');
-    for (let j = 0; j < 16; j++) {
-        const col = document.createElement('div');
-        col.classList.add('col');
-        col.style.display = 'flex';
-        row.style.flexDirection = 'column';
-        // col.style.border = '1px black solid';
-        col.style.height = '30px';
-        col.style.width = '30px';
-        col.addEventListener('mouseover', (e) => {
-            col.style.backgroundColor = 'red';
-        })
-        // col.style.backgroundColor = 'white';
-        row.appendChild(col);
+console.log(gridSizeText)
 
-        button.addEventListener('click', (e) => {
-            col.style.backgroundColor = 'white';
-        })
-    }
-    row.childNodes[0].style.borderTop = '2px black solid';
-    row.lastChild.style.borderBottom = '2px black solid';
-    container.appendChild(row);
+console.log(randomColorButton)
+
+function getSize() {
+    return Number(input.value);
 }
-container.childNodes[1].style.borderLeft = '2px black solid';
-container.lastChild.style.borderRight = '2px black solid';
+
+function clearGrid() {
+    container.innerHTML = '';
+    createGrid()
+}
+
+clearGrid();
+
+
+clear.addEventListener('click', clearGrid)
+input.addEventListener('input', (e) => {
+    clearGrid();
+});
+
+
+function randomColor() {
+    let r = Math.floor(Math.random() * 255) + 1;
+    let g = Math.floor(Math.random() * 255) + 1;
+    let b = Math.floor(Math.random() * 255) + 1;
+    return `rgb(${r}, ${g}, ${b})`
+}
+
+
+function createGrid() {
+    for (let j = 0; j < getSize(); j++) {
+        gridSizeText.innerText = getSize();
+        let heightWidth = 480 / getSize();
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.classList.add('row');
+        for (let j = 0; j < getSize(); j++) {
+
+
+            const col = document.createElement('div');
+
+            col.classList.add('col');
+            col.style.display = 'flex';
+            row.style.flexDirection = 'column';
+            col.style.height = `${heightWidth}px`;
+            col.style.width = `${heightWidth}px`;
+            col.addEventListener('mouseover', (e) => {
+                col.style.backgroundColor = 'black';
+                randomColorButton.addEventListener('click', (e) => {
+                    col.style.backgroundColor = randomColor();
+                })
+            })
+
+
+            row.appendChild(col);
+
+
+        }
+        row.childNodes[0].style.borderTop = '2px black solid';
+        row.lastChild.style.borderBottom = '2px black solid';
+        container.appendChild(row);
+    }
+    container.childNodes[0].style.borderLeft = '2px black solid';
+    container.lastChild.style.borderRight = '2px black solid';
+
+}
 

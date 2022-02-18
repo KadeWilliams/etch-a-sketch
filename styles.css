@@ -2,12 +2,17 @@ body{
     margin: 0;
 }
 
-.button-container {
+.button-container{
     display: flex;
     justify-content: center;
     align-self: center;
     height: 30px;
     margin-top: 30px;
+}
+
+.button-container > * {
+    margin: 0 25px;
+    align-self: center;
 }
 
 #container {
